@@ -34,6 +34,13 @@ func main() {
 			continue
 		}
 		fmt.Println(reflect.TypeOf(shape).Elem(), shape.BBox())
-
+		switch shape := shape.(type) {
+		default:
+			fmt.Printf("unsupported shape type: %T\n", shape)
+		case *shp.Polygon:
+			for _, p := range shape.Points {
+				fmt.Printf("\t%+v\n", p)
+			}
+		}
 	}
 }
